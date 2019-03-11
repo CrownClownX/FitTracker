@@ -1,4 +1,6 @@
-﻿using System;
+﻿using FitTracker.Persistence;
+using FitTracker.ViewModels;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -13,14 +15,14 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace FitTracker
+namespace FitTracker.Views
 {
     /// <summary>
-    /// Interaction logic for MainWindow.xaml
+    /// Interaction logic for Edit.xaml
     /// </summary>
-    public partial class MainWindow : Window
+    public partial class Edit : UserControl
     {
-        public MainWindow()
+        public Edit()
         {
             InitializeComponent();
         }

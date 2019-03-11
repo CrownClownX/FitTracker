@@ -1,4 +1,5 @@
-﻿using System;
+﻿using FitTracker.Helper;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -6,13 +7,58 @@ using System.Threading.Tasks;
 
 namespace FitTracker.Core.Model
 {
-    public class Workout
+    [Serializable]
+    public class Workout : NotifyPropertyChanged
     {
-        public int ID { get; set; }
-        public string Name { get; set; }
-        public DateTime Date { get; set; }
+        public Workout()
+        {
+            _sets = new List<Set>();
+            Date = DateTime.Now;
+        }
 
-        public List<Exercise> ExercisesIds { get; set; }
-        public List<Exercise> Exercises { get; set; }
+        private int id;
+        private DateTime date;
+
+        private ICollection<Set> _sets;
+
+        public int ID
+        {
+            get
+            {
+                return id;
+            }
+            set
+            {
+                id = value;
+                OnPropertyChanged("ID");
+            }
+        }
+        public DateTime Date
+        {
+            get
+            {
+                return date;
+            }
+            set
+            {
+                date = value;
+                OnPropertyChanged("Date");
+            }
+        }
+        public ICollection<Set> Sets
+        {
+            get
+            {
+                return _sets;
+            }
+            set
+            {
+                _sets = value;
+                OnPropertyChanged("Sets");
+            }
+        }
+
+        public int ActivityId { get; set; }
+        public Activity Activity { get; set; }
     }
 }
