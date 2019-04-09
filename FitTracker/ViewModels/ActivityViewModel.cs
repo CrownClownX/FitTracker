@@ -19,7 +19,9 @@ namespace FitTracker.ViewModels
         private readonly IEventAggregator _eventAggregator;
 
         private Activity _activity;
-        private String _lastWorkout;
+        private string _lastWorkout;
+        private int _selectedIndex;
+        private int _numberOfWorkouts;
 
         public ActivityViewModel(IUnitOfWork unitOfWork, IRegionManager regionManager, IEventAggregator eventAggregator)
         {
@@ -53,6 +55,26 @@ namespace FitTracker.ViewModels
             }
         }
 
+        public int SelectedIndex
+        {
+            get => _selectedIndex;
+            set
+            {
+                _selectedIndex = value;
+                OnPropertyChanged("SelectedIndex");
+            }
+        }
+
+        public int NumberOfWorkouts
+        {
+            get => _numberOfWorkouts;
+            set
+            {
+                _numberOfWorkouts = value;
+                OnPropertyChanged("NumberOfWorkouts");
+            }
+        }
+
         private void NavigateToEdit(object path)
         {
             var parameter = new NavigationParameters
@@ -83,11 +105,12 @@ namespace FitTracker.ViewModels
 
         public void OnNavigatedFrom(NavigationContext navigationContext)
         {
-
+            SelectedIndex = 0;
         }
 
         public void OnNavigatedTo(NavigationContext navigationContext)
         {
+            SelectedIndex = 0;
             var data = navigationContext.Parameters.GetValue<int>("Activity");
             Activity = _unitOfWork.ActivityRepository.Get(data);
 
@@ -102,6 +125,9 @@ namespace FitTracker.ViewModels
                 LastWorkout = Activity.History != null && Activity.History.Count() > 0
                     ? Activity.History.Max(w => w.Date).ToShortDateString()
                     : "There is no workouts in history";
+                NumberOfWorkouts = Activity.History != null 
+                    ? Activity.History.Count
+                    : 0;
             }
         }
     }

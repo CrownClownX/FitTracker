@@ -10,25 +10,41 @@
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
 
-    <TabControl Padding="20px">
+    <TabControl Padding="10px" SelectedIndex="{Binding SelectedIndex}">
         <TabItem Header="Information">
-            <StackPanel Orientation="Horizontal">
-                <StackPanel>
-                    <Label Content="{Binding Activity.Name}" FontSize="22"></Label>
-                    <Label Content="{Binding Activity.DayOfWeek}" ContentStringFormat="DAY : {0}"></Label>
-                    <Label Content="{Binding LastWorkout}" ContentStringFormat="LAST WORKOUT : {0}"/>
-                    <Button Content="Edit" Command="{Binding NavigateToEditCommand}" CommandParameter="Edit"/>
-                </StackPanel>
+            <Grid>
 
-                <ListView ItemsSource="{Binding Activity.WorkoutTemplate.Exercises}">
-                    <ListView.View>
-                        <GridView>
-                            <GridViewColumn Header="Excercises" Width="120" DisplayMemberBinding="{Binding Name}" />
-                        </GridView>
-                    </ListView.View>
-                </ListView>
-                <Button Height="20" VerticalAlignment="Top" Command="{Binding RemoveActivityCommand}"></Button>
-            </StackPanel>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="*" />
+                </Grid.ColumnDefinitions>
+
+                <StackPanel Margin="10 0 0 0" Grid.Column="0">
+                    <Label Content="{Binding Activity.Name}" FontWeight="Light" Padding="0 0 10 5" FontSize="45"></Label>
+                    <StackPanel Margin="10 0 0 0">
+                        <Label Content="{Binding Activity.DayOfWeek}"  FontWeight="Light" FontSize="16" ContentStringFormat="DAY : {0}"></Label>
+                        <Label Content="{Binding LastWorkout}" FontWeight="Light" FontSize="16" ContentStringFormat="LAST WORKOUT : {0}"/>
+                        <Label Content="{Binding NumberOfWorkouts}" FontWeight="Light" FontSize="16" ContentStringFormat="YOU HAVE COMPLETED {0} WORKOUTS!"/>
+                        <Button HorizontalAlignment="Left" Width="200" Content="Edit" Margin="0 10 0 10 " Command="{Binding NavigateToEditCommand}" CommandParameter="Edit"/>
+                        <Button HorizontalAlignment="Left" Width="200" Height="20" Content="Remove Activity" VerticalAlignment="Top" Command="{Binding RemoveActivityCommand}"/>
+                    </StackPanel>
+                </StackPanel>
+                
+                <StackPanel Margin="10" Orientation="Vertical" Grid.Column="1">
+                    <TextBlock Text="Workout" FontSize="22" FontWeight="Light" Padding="0 0 0 10"/>
+                    <ListView ItemsSource="{Binding Activity.WorkoutTemplate.Exercises}">
+                        <ListView.ItemTemplate>
+                            <DataTemplate>
+                                <WrapPanel>
+                                    <TextBlock FontSize="20" FontWeight="Light" Padding="10 0 0 0" Text="- " />
+                                    <TextBlock FontSize="20" FontWeight="Light" Text="{Binding Name}" />
+                                </WrapPanel>
+                            </DataTemplate>
+                        </ListView.ItemTemplate>
+                    </ListView>
+                </StackPanel>
+                
+            </Grid>
         </TabItem>
         <TabItem Header="New Workout">
             <controls:NewWorkoutView />

@@ -42,6 +42,7 @@ namespace FitTracker
             Container.RegisterTypeForNavigation<NewWorkoutView>("NewWorkout");
             Container.RegisterTypeForNavigation<ActivityView>("Activity");
             Container.RegisterTypeForNavigation<HistoryView>("History");
+            Container.RegisterTypeForNavigation<ExerciseView>("Exercise");
 
             Container.RegisterInstance<FitTrackerContext>(new FitTrackerContext());
             Container.RegisterType<IUnitOfWork, UnitOfWork>(new ContainerControlledLifetimeManager());

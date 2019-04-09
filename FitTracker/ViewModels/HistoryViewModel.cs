@@ -77,7 +77,7 @@ namespace FitTracker.ViewModels
             {
                 var newPair = new KeyValuePair
                 {
-                    Name = set.Exercise.Name,
+                    Name = set.Exercise,
                     Repetitions = string.Join("/", set.Repetitions.Select(r => r.NumberOfRepetitions))
                 };
 
@@ -89,9 +89,9 @@ namespace FitTracker.ViewModels
 
         private void GetActivity(int id)
         {
-            var activity = _unitOfWork.ActivityRepository.Get(id);
+            Activity = _unitOfWork.ActivityRepository.Get(id);
 
-            if (activity == null)
+            if (Activity == null)
                 _regionManager.RequestNavigate("MainRegion", "Schedule");
         }
 

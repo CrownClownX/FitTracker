@@ -17,8 +17,9 @@ namespace FitTracker.ViewModels
 
         private Activity _activity;
         private Workout _newWorkout;
-        private Set _newSet;
+        private Exercise _newExercise;
         private Set _selectedSet;
+        private string _customeNewExercise;
 
         private ObservableCollection<Set> _sets;
         private ObservableCollection<Exercise> _allExercises;
@@ -31,7 +32,7 @@ namespace FitTracker.ViewModels
             _unitOfWork = unitOfWork;
             _eventAggregator = eventAggregator;
             _regionManager = regionManager;
-            _newSet = new Set();
+            _newExercise = new Exercise();
             _newRepetition = new Repetition();
             _newWorkout = new Workout();
 
@@ -70,13 +71,26 @@ namespace FitTracker.ViewModels
             }
         }
 
-        public Set NewSet
+        public Exercise NewExercise
         {
-            get { return _newSet; }
+            get { return _newExercise; }
             set
             {
-                _newSet = value;
-                OnPropertyChanged("NewSet");
+                _newExercise = value;
+                OnPropertyChanged("NewExercise");
+
+                if (_newExercise != null)
+                    Sets.Add(new Set { Exercise = NewExercise.Name });
+            }
+        }
+
+        public string CustomeNewExercise
+        {
+            get => _customeNewExercise;
+            set
+            {
+                _customeNewExercise = value;
+                OnPropertyChanged("CustomeNewExercise");
             }
         }
 
@@ -146,11 +160,11 @@ namespace FitTracker.ViewModels
 
         private void AddExercise()
         {
-            if (NewSet == null)
+            if (CustomeNewExercise == null || CustomeNewExercise.Count() == 0)
                 return;
 
-            Sets.Add(NewSet.Clone());
-            NewSet = new Set();
+            Sets.Add(new Set { Exercise = CustomeNewExercise});
+            NewExercise = new Exercise();
         }
 
         private void RemoveExercise()
@@ -183,7 +197,8 @@ namespace FitTracker.ViewModels
             else
             {
                 Sets = GetTemplateExercise();
-                AllExercises = new ObservableCollection<Exercise>(_unitOfWork.ExerciseRepository.GetAll());
+                AllExercises = new ObservableCollection<Exercise>(
+                    _unitOfWork.ExerciseRepository.GetAll());
             }
         }
 
@@ -194,7 +209,7 @@ namespace FitTracker.ViewModels
 
             return Activity.WorkoutTemplate != null
                     ? new ObservableCollection<Set>(Activity.WorkoutTemplate.Exercises
-                        .Select(e => new Set { Exercise = e }))
+                        .Select(e => new Set { Exercise = e.Name }))
                     : new ObservableCollection<Set>();
         }
     }

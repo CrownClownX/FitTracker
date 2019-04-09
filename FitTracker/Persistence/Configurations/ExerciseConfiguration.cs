@@ -15,13 +15,6 @@ namespace FitTracker.Persistence.Configurations
             Property(e => e.Name)
                 .IsRequired()
                 .HasMaxLength(35);
-
-            HasMany(e => e.Sets)
-                .WithRequired(s => s.Exercise)
-                .WillCascadeOnDelete(false);
-
-            HasMany(e => e.WorkoutTemplates)
-                .WithMany(t => t.Exercises);
         }
     }
 }

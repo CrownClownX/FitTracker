@@ -28,8 +28,6 @@ namespace FitTracker.Persistence.Repositories
                 .Include(a => a.WorkoutTemplate.Exercises)
                 .Include(a => a.History)
                 .Include(a => a.History.Select(w => w.Sets))
-                .Include(a => a.History.Select(w => w.Sets.Select(s => s.Exercise)))
-                .Include(a => a.History.Select(w => w.Sets.Select(s => s.Repetitions)))
                 .Include(a => a.History.Select(w => w.Sets.Select(s => s.Repetitions)))
                 .SingleOrDefault(a => a.ID == id);
         }

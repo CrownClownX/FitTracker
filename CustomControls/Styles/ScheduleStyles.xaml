@@ -1,0 +1,29 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:local="clr-namespace:CustomControls.Styles">
+
+    <Style x:Key="BorderStyle" TargetType="Border">
+        <Setter Property="BorderThickness" Value="2 2 0 0"/>
+        <Setter Property="BorderBrush" Value="LightBlue"/>
+    </Style>
+
+    <Style x:Key="BorderHeader" TargetType="Border">
+        <Setter Property="Background" Value="LightBlue"/>
+    </Style>
+
+    <Style x:Key="BorderLastRowStyle" TargetType="Border">
+        <Setter Property="BorderThickness" Value="0 0 0 2"/>
+        <Setter Property="BorderBrush" Value="LightBlue"/>
+    </Style>
+
+    <Style x:Key="BorderRigtCellStyle" TargetType="Border">
+        <Setter Property="BorderThickness" Value="0 0 2 0"/>
+        <Setter Property="BorderBrush" Value="LightBlue"/>
+    </Style>
+
+    <Style x:Key="TextBlockStyle" TargetType="TextBlock">
+        <Setter Property="FontSize" Value="18"/>
+        <Setter Property="TextAlignment" Value="Center"/>
+        <Setter Property="Padding" Value="5"/>
+    </Style>
+</ResourceDictionary>

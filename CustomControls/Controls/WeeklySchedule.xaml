@@ -1,0 +1,70 @@
+﻿<UserControl x:Class="CustomControls.Controls.WeeklySchedule"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:CustomControls.Controls"
+             mc:Ignorable="d" 
+             d:DesignHeight="450" d:DesignWidth="800">
+
+    <UserControl.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="pack://application:,,,/CustomControls;component/Styles/ScheduleStyles.xaml"/>
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </UserControl.Resources>
+
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="*" />
+        </Grid.ColumnDefinitions>
+
+        <Grid.RowDefinitions>
+            <RowDefinition Height="1*" />
+            <RowDefinition Height="6*" />
+        </Grid.RowDefinitions>
+
+        <Border Style="{StaticResource BorderHeader}" Grid.Column="0"  />
+        <Border Style="{StaticResource BorderHeader}" Grid.Column="1"  />
+        <Border Style="{StaticResource BorderHeader}" Grid.Column="2"  />
+        <Border Style="{StaticResource BorderHeader}" Grid.Column="3"  />
+        <Border Style="{StaticResource BorderHeader}" Grid.Column="4"  />
+        <Border Style="{StaticResource BorderHeader}" Grid.Column="5"  />
+        <Border Style="{StaticResource BorderHeader}" Grid.Column="6"  />
+
+        <Border Style="{StaticResource BorderStyle}" Grid.Row="1" Grid.Column="0"  />
+        <Border Style="{StaticResource BorderStyle}" Grid.Row="1" Grid.Column="1"  />
+        <Border Style="{StaticResource BorderStyle}" Grid.Row="1" Grid.Column="2"  />
+        <Border Style="{StaticResource BorderStyle}" Grid.Row="1" Grid.Column="3"  />
+        <Border Style="{StaticResource BorderStyle}" Grid.Row="1" Grid.Column="4"  />
+        <Border Style="{StaticResource BorderStyle}" Grid.Row="1" Grid.Column="5"  />
+        <Border Style="{StaticResource BorderStyle}" Grid.Row="1" Grid.Column="6"  />
+
+        <Border Style="{StaticResource BorderLastRowStyle}" Grid.Row="1" Grid.Column="0" />
+        <Border Style="{StaticResource BorderLastRowStyle}" Grid.Row="1" Grid.Column="1" />
+        <Border Style="{StaticResource BorderLastRowStyle}" Grid.Row="1" Grid.Column="2" />
+        <Border Style="{StaticResource BorderLastRowStyle}" Grid.Row="1" Grid.Column="3" />
+        <Border Style="{StaticResource BorderLastRowStyle}" Grid.Row="1" Grid.Column="4" />
+        <Border Style="{StaticResource BorderLastRowStyle}" Grid.Row="1" Grid.Column="5" />
+        <Border Style="{StaticResource BorderLastRowStyle}" Grid.Row="1" Grid.Column="6" />
+
+        <Border Style="{StaticResource BorderRigtCellStyle}" Grid.Row="0" Grid.Column="6" />
+        <Border Style="{StaticResource BorderRigtCellStyle}" Grid.Row="1" Grid.Column="6" />
+
+        <TextBlock Style="{StaticResource TextBlockStyle}" Grid.Column="0">Sun</TextBlock>
+        <TextBlock Style="{StaticResource TextBlockStyle}" Grid.Column="1">Mon</TextBlock>
+        <TextBlock Style="{StaticResource TextBlockStyle}" Grid.Column="2">Tue</TextBlock>
+        <TextBlock Style="{StaticResource TextBlockStyle}" Grid.Column="3">Wed</TextBlock>
+        <TextBlock Style="{StaticResource TextBlockStyle}" Grid.Column="4">Thu</TextBlock>
+        <TextBlock Style="{StaticResource TextBlockStyle}" Grid.Column="5">Fri</TextBlock>
+        <TextBlock Style="{StaticResource TextBlockStyle}" Grid.Column="6">Sat</TextBlock>
+
+    </Grid>
+</UserControl>

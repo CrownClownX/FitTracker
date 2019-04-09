@@ -11,11 +11,11 @@ namespace FitTracker.Core.Model
     public class Template : NotifyPropertyChanged
     {
         private int _id;
-        private ICollection<Exercise> _exercises;
+        private ICollection<TemplateExercise> _exercises;
 
         public Template()
         {
-            _exercises = new List<Exercise>();
+            _exercises = new List<TemplateExercise>();
         }
 
         public int ID
@@ -28,7 +28,7 @@ namespace FitTracker.Core.Model
             }
         }
 
-        public ICollection<Exercise> Exercises
+        public ICollection<TemplateExercise> Exercises
         {
             get { return _exercises; }
             set

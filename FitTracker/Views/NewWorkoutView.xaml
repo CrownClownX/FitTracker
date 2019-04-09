@@ -8,54 +8,68 @@
              prism:ViewModelLocator.AutoWireViewModel="True"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
-    <StackPanel>
-        <Label Content="Date" />
-        <DatePicker SelectedDate="{Binding NewWorkout.Date,
+    <StackPanel Margin="10 0 10 0">
+        <Label Margin="8 0 0 0" Content="Pick a date of your workout" FontSize="15" />
+        <DatePicker Margin="10" HorizontalAlignment="Left" Width="200" SelectedDate="{Binding NewWorkout.Date,
                 UpdateSourceTrigger=PropertyChanged}" />
-        <StackPanel Orientation="Horizontal">
+        <StackPanel Margin="10 0 0 0" Orientation="Horizontal">
 
-            <StackPanel Orientation="Horizontal">
-                <ListView Width="150" ItemsSource="{Binding Sets,
-                        UpdateSourceTrigger=PropertyChanged}" SelectedItem="{Binding SelectedSet}">
-                    <ListView.View>
-                        <GridView>
-                            <GridViewColumn Header="Exercise" Width="120" DisplayMemberBinding="{Binding Exercise.Name}" />
-                        </GridView>
-                    </ListView.View>
-                </ListView>
-
+            <StackPanel Orientation="Horizontal" Margin="0 0 20 0">
+                
                 <StackPanel>
-                    <Label Content="Exercise" />
-                    <ComboBox ItemsSource="{Binding AllExercises}" DisplayMemberPath="Name"
-                        SelectedItem="{Binding NewSet.Exercise}">
+                    <TextBlock FontSize="17" Text="Exercises" />
+                    <ListView Width="150" ItemsSource="{Binding Sets,
+                            UpdateSourceTrigger=PropertyChanged}" SelectedItem="{Binding SelectedSet}">
+                        <ListView.ItemTemplate>
+                            <DataTemplate>
+                                <WrapPanel>
+                                    <TextBlock Margin="5 0 0 0" FontSize="15" Text="-" />
+                                    <TextBlock FontSize="15" Text="{Binding Exercise}" />
+                                </WrapPanel>
+                            </DataTemplate>
+                        </ListView.ItemTemplate>
+                    </ListView>
+                </StackPanel>
+                
+                <StackPanel Margin="10 0 10 0">
+                    <Label Margin="0 0 0 10" Content="Pick or type exercise" />
+                    <ComboBox Margin="0 0 0 10" ItemsSource="{Binding AllExercises}" DisplayMemberPath="Name"
+                        SelectedItem="{Binding NewExercise}">
                     </ComboBox>
 
-                    <Button Content="Add" Command="{Binding AddExerciseCommand}"/>
-                    <Button Content="Delete" Command="{Binding RemoveExerciseCommand}"/>
+                    <TextBox Margin="0 0 0 10" Text="{Binding CustomeNewExercise}"></TextBox>
+
+                    <Button Margin="0 0 0 10" Width="130" Content="Add" Command="{Binding AddExerciseCommand}"/>
+                    <Button Margin="0 0 0 10" Content="Delete" Command="{Binding RemoveExerciseCommand}"/>
                 </StackPanel>
 
             </StackPanel>
 
             <StackPanel Orientation="Horizontal">
-                <ListView Width="150" ItemsSource="{Binding SelectedSet.Repetitions,
-                        UpdateSourceTrigger=PropertyChanged}" SelectedItem="{Binding SelectedRepetition}">
-                    <ListView.View>
-                        <GridView>
-                            <GridViewColumn Header="Repetitions" Width="120" DisplayMemberBinding="{Binding NumberOfRepetitions}" />
-                        </GridView>
-                    </ListView.View>
-                </ListView>
-
                 <StackPanel>
-                    <Label Content="Repetitions" />
-                    <TextBox Text="{Binding NewRepetition.NumberOfRepetitions}"/>
-                    <Button Content="Add set" Command="{Binding AddRepetitionCommand}"/>
-                    <Button Content="Remove set"  Command="{Binding RemoveRepetitionCommand}"/>
+                    <TextBlock FontSize="17" Text="Repetitions" />
+                    <ListView Width="100" ItemsSource="{Binding SelectedSet.Repetitions,
+                            UpdateSourceTrigger=PropertyChanged}" SelectedItem="{Binding SelectedRepetition}">
+                        <ListView.ItemTemplate>
+                            <DataTemplate>
+                                <WrapPanel>
+                                    <TextBlock FontSize="15" Text="{Binding NumberOfRepetitions}" />
+                                </WrapPanel>
+                            </DataTemplate>
+                        </ListView.ItemTemplate>
+                    </ListView>
+                </StackPanel>
+                
+                <StackPanel Margin="10 0 10 0">
+                    <Label Margin="0 0 0 10" Content="Type repetitions" />
+                    <TextBox Margin="0 0 0 10" Text="{Binding NewRepetition.NumberOfRepetitions}"/>
+                    <Button Margin="0 0 0 10" Width="130" Content="Add set" Command="{Binding AddRepetitionCommand}"/>
+                    <Button Margin="0 0 0 10" Width="130" Content="Remove set"  Command="{Binding RemoveRepetitionCommand}"/>
                 </StackPanel>
             </StackPanel>
         </StackPanel>
 
-        <Button Content="Save Workout" Command="{Binding AddWorkoutCommand}"></Button>
+        <Button Margin="10 10 10 0" Content="Save Workout" Command="{Binding AddWorkoutCommand}"></Button>
 
     </StackPanel>
 </UserControl>

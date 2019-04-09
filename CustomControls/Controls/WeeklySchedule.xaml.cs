@@ -1,6 +1,4 @@
-﻿using FitTracker.ViewModels;
-using MahApps.Metro.Controls;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -12,17 +10,21 @@ using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
+using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace FitTracker.Views
+namespace CustomControls.Controls
 {
     /// <summary>
-    /// Interaction logic for MainWindow.xaml
+    /// Interaction logic for WeeklySchedule.xaml
     /// </summary>
-    public partial class MainWindow : MetroWindow
+    public partial class WeeklySchedule : UserControl
     {
-        public MainWindow()
+
+
+        public WeeklySchedule()
         {
+
             InitializeComponent();
         }
     }

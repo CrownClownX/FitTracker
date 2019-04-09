@@ -12,12 +12,10 @@ namespace FitTracker.Core.Model
     public class Set : NotifyPropertyChanged
     {
         private ObservableCollection<Repetition> _repetitions;
-        private int _exerciseId;
-        private Exercise _exercise;
+        private string _exercise;
 
         public Set()
         {
-            //Exercise = new Exercise();
             Repetitions = new ObservableCollection<Repetition>();
         }
 
@@ -33,17 +31,7 @@ namespace FitTracker.Core.Model
             }
         }
 
-        public int ExerciseId
-        {
-            get => _exerciseId;
-            set
-            {
-                _exerciseId = value;
-                OnPropertyChanged("ExerciseId");
-            }
-        }
-
-        public Exercise Exercise
+        public string Exercise
         {
             get => _exercise;
             set

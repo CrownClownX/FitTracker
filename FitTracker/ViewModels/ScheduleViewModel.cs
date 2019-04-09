@@ -32,10 +32,12 @@ namespace FitTracker.ViewModels
             Schedule = CreateSchedule();
             NavigateCommand = new DelegateCommand<object>(Navigate);
             AddActivityCommand = new DelegateCommand(AddActivity);
+            GoToExerciseManagerCommand = new DelegateCommand(GoToExerciseManager);
         }
 
         public DelegateCommand<object> NavigateCommand { get; private set; }
         public DelegateCommand AddActivityCommand { get; private set; }
+        public DelegateCommand GoToExerciseManagerCommand { get; private set; }
 
 
         public WeeklyScheduleDto Schedule
@@ -68,6 +70,11 @@ namespace FitTracker.ViewModels
             };
 
             _regionManager.RequestNavigate("MainRegion", "Edit", parameter);
+        }
+
+        private void GoToExerciseManager()
+        {
+            _regionManager.RequestNavigate("MainRegion", "Exercise");
         }
 
         private WeeklyScheduleDto CreateSchedule()

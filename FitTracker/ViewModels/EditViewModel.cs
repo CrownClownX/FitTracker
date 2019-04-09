@@ -19,9 +19,9 @@ namespace FitTracker.ViewModels
         private List<DayOfWeek> _daysOfWeek;
 
         private Exercise _newTemplateExercise;
-        private Exercise _selectedTemplateExercise;
+        private TemplateExercise _selectedTemplateExercise;
 
-        private ObservableCollection<Exercise> _templateWorkoutExercises;
+        private ObservableCollection<TemplateExercise> _templateWorkoutExercises;
         private ObservableCollection<Exercise> _allExercises;
 
         private readonly IUnitOfWork _unitOfWork;
@@ -44,15 +44,14 @@ namespace FitTracker.ViewModels
         {
             if (NewTemplateExercise == null)
                 return;
-
-            var ifexsist = TemplateWorkoutExercises
-                .SingleOrDefault(t => t.ID == NewTemplateExercise.ID);
-
-            if (ifexsist == null)
+         
+            var exercise = new TemplateExercise
             {
-                TemplateWorkoutExercises.Add(NewTemplateExercise);
-                NewTemplateExercise = null;
-            }
+                Name = NewTemplateExercise.Name
+            };
+
+            TemplateWorkoutExercises.Add(exercise);
+            NewTemplateExercise = null;
         }
 
         private void RemoveFromCurrent()
@@ -69,7 +68,7 @@ namespace FitTracker.ViewModels
             if(Activity.WorkoutTemplate == null)
                 Activity.WorkoutTemplate = new Template();
 
-            Activity.WorkoutTemplate.Exercises = TemplateWorkoutExercises;
+            Activity.WorkoutTemplate.Exercises = TemplateWorkoutExercises.ToList();
 
             if (Activity.ID == 0)
                 _unitOfWork.ActivityRepository.Add(Activity);
@@ -108,7 +107,7 @@ namespace FitTracker.ViewModels
             }
         }
 
-        public Exercise SelectedTemplateExercise
+        public TemplateExercise SelectedTemplateExercise
         {
             get { return _selectedTemplateExercise; }
             set
@@ -118,7 +117,7 @@ namespace FitTracker.ViewModels
             }
         }
 
-        public ObservableCollection<Exercise> TemplateWorkoutExercises
+        public ObservableCollection<TemplateExercise> TemplateWorkoutExercises
         {
             get { return _templateWorkoutExercises; }
             set
@@ -166,8 +165,8 @@ namespace FitTracker.ViewModels
                 : new Activity();
 
             TemplateWorkoutExercises = Activity.WorkoutTemplate != null
-                ? new ObservableCollection<Exercise>(Activity.WorkoutTemplate.Exercises)
-                : new ObservableCollection<Exercise>();
+                ? new ObservableCollection<TemplateExercise>(Activity.WorkoutTemplate.Exercises)
+                : new ObservableCollection<TemplateExercise>();
 
             AllExercises = new ObservableCollection<Exercise>(_unitOfWork.ExerciseRepository.GetAll());
         }

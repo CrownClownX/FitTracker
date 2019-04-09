@@ -27,7 +27,6 @@ namespace FitTracker.ViewModels
 
         public void Navigate(string path)
         {
-            //Navigation
             if (path != null)
             {
                 _regionManager.RequestNavigate("MainRegion", path);

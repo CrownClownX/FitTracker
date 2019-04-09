@@ -23,6 +23,7 @@ namespace FitTracker.Persistence
         public virtual DbSet<Workout> Workouts { get; set; }
         public virtual DbSet<Template> WorkoutTemplates { get; set; }
         public virtual DbSet<Set> Sets { get; set; }
+        public virtual DbSet<TemplateExercise> TemplateExercises { get; set; }
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {

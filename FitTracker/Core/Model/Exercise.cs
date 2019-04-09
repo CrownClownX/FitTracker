@@ -13,18 +13,10 @@ namespace FitTracker.Core.Model
     {
         public Exercise()
         {
-            _sets = new List<Set>();
-            workoutTemplates = new List<Template>();
         }
 
         private int id;
         private string name;
-
-        [field: NonSerialized]
-        private ICollection<Set> _sets;
-
-        [field: NonSerialized]
-        private ICollection<Template> workoutTemplates;
 
         public int ID
         {
@@ -48,25 +40,6 @@ namespace FitTracker.Core.Model
             {
                 name = value;
                 OnPropertyChanged("Name");
-            }
-        }
-
-        public ICollection<Set> Sets
-        {
-            get => _sets;
-            set
-            {
-                _sets = value;
-                OnPropertyChanged("Sets");
-            }
-        }
-        public ICollection<Template> WorkoutTemplates
-        {
-            get => workoutTemplates;
-            set
-            {
-                workoutTemplates = value;
-                OnPropertyChanged("WorkoutTemplates");
             }
         }
     }

@@ -37,11 +37,20 @@
     <Reference Include="CommonServiceLocator, Version=2.0.4.0, Culture=neutral, PublicKeyToken=489b6accfaf20ef0, processorArchitecture=MSIL">
       <HintPath>..\packages\CommonServiceLocator.2.0.4\lib\net46\CommonServiceLocator.dll</HintPath>
     </Reference>
+    <Reference Include="ControlzEx, Version=4.0.0.0, Culture=neutral, PublicKeyToken=69f1c32f803d307e, processorArchitecture=MSIL">
+      <HintPath>..\packages\ControlzEx.4.0.0-alpha0232\lib\net45\ControlzEx.dll</HintPath>
+    </Reference>
     <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
       <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.dll</HintPath>
     </Reference>
     <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
       <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+    </Reference>
+    <Reference Include="MahApps.Metro, Version=2.0.0.0, Culture=neutral, PublicKeyToken=51482d6f650b2b3f, processorArchitecture=MSIL">
+      <HintPath>..\packages\MahApps.Metro.2.0.0-alpha0262\lib\net46\MahApps.Metro.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Xaml.Behaviors, Version=1.0.1.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Xaml.Behaviors.Wpf.1.0.1\lib\net45\Microsoft.Xaml.Behaviors.dll</HintPath>
     </Reference>
     <Reference Include="Prism, Version=7.2.0.708, Culture=neutral, PublicKeyToken=40ee6c3a2184dc59, processorArchitecture=MSIL">
       <HintPath>..\packages\Prism.Core.7.2.0.708-pre\lib\net45\Prism.dll</HintPath>
@@ -94,6 +103,7 @@
     <Compile Include="Core\Model\Repetition.cs" />
     <Compile Include="Core\Model\Set.cs" />
     <Compile Include="Core\Model\Template.cs" />
+    <Compile Include="Core\Model\TemplateExercise.cs" />
     <Compile Include="Core\Repositories\IActivityRepository.cs" />
     <Compile Include="Core\Repositories\IExerciseRepository.cs" />
     <Compile Include="Core\Repositories\IWorkoutRepository.cs" />
@@ -107,6 +117,14 @@
     <Compile Include="Migrations\201903081339365_Init.Designer.cs">
       <DependentUpon>201903081339365_Init.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201903251453523_ChangeExerciseInTemplateAndSetToString.cs" />
+    <Compile Include="Migrations\201903251453523_ChangeExerciseInTemplateAndSetToString.Designer.cs">
+      <DependentUpon>201903251453523_ChangeExerciseInTemplateAndSetToString.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201903251520562_TemplateExerciseClassToMakeTableBetweenTemplateExerciseAndTemplateWorkout.cs" />
+    <Compile Include="Migrations\201903251520562_TemplateExerciseClassToMakeTableBetweenTemplateExerciseAndTemplateWorkout.Designer.cs">
+      <DependentUpon>201903251520562_TemplateExerciseClassToMakeTableBetweenTemplateExerciseAndTemplateWorkout.cs</DependentUpon>
+    </Compile>
     <Compile Include="Persistence\Configurations\ExerciseConfiguration.cs" />
     <Compile Include="Persistence\Configurations\SetConfiguration.cs" />
     <Compile Include="Persistence\Configurations\WorkoutConfiguration.cs" />
@@ -115,6 +133,7 @@
     <Compile Include="Persistence\Repositories\WorkoutRepository.cs" />
     <Compile Include="ViewModels\ActivityViewModel.cs" />
     <Compile Include="ViewModels\EditViewModel.cs" />
+    <Compile Include="ViewModels\ExerciseViewModel.cs" />
     <Compile Include="ViewModels\HistoryViewModel.cs" />
     <Compile Include="ViewModels\NewWorkoutViewModel.cs" />
     <Compile Include="ViewModels\ScheduleViewModel.cs" />
@@ -132,6 +151,9 @@
     </Compile>
     <Compile Include="Views\Edit.xaml.cs">
       <DependentUpon>Edit.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\ExerciseView.xaml.cs">
+      <DependentUpon>ExerciseView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\HistoryView.xaml.cs">
       <DependentUpon>HistoryView.xaml</DependentUpon>
@@ -168,6 +190,12 @@
     <EmbeddedResource Include="Migrations\201903081339365_Init.resx">
       <DependentUpon>201903081339365_Init.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201903251453523_ChangeExerciseInTemplateAndSetToString.resx">
+      <DependentUpon>201903251453523_ChangeExerciseInTemplateAndSetToString.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201903251520562_TemplateExerciseClassToMakeTableBetweenTemplateExerciseAndTemplateWorkout.resx">
+      <DependentUpon>201903251520562_TemplateExerciseClassToMakeTableBetweenTemplateExerciseAndTemplateWorkout.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
@@ -181,13 +209,16 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
-  <ItemGroup />
   <ItemGroup>
     <Page Include="Views\ActivityView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\Edit.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\ExerciseView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
