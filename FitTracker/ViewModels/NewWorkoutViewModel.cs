@@ -80,7 +80,9 @@ namespace FitTracker.ViewModels
                 OnPropertyChanged("NewExercise");
 
                 if (_newExercise != null)
-                    Sets.Add(new Set { Exercise = NewExercise.Name });
+                {
+                    Sets.Add(new Set { Exercise = value.Name });
+                }
             }
         }
 
@@ -164,7 +166,8 @@ namespace FitTracker.ViewModels
                 return;
 
             Sets.Add(new Set { Exercise = CustomeNewExercise});
-            NewExercise = new Exercise();
+
+            CustomeNewExercise = "";
         }
 
         private void RemoveExercise()

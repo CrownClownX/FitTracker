@@ -9,6 +9,7 @@
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
     <StackPanel Margin="10 0 10 0">
+        <TextBlock>TO ADD REPETITION EXERCISE MUST BE SELECTED</TextBlock>
         <Label Margin="8 0 0 0" Content="Pick a date of your workout" FontSize="15" />
         <DatePicker Margin="10" HorizontalAlignment="Left" Width="200" SelectedDate="{Binding NewWorkout.Date,
                 UpdateSourceTrigger=PropertyChanged}" />
